@@ -1,0 +1,33 @@
+
+[functions.fetchSeoSignals]
+enabled = true
+verify_jwt = true
+import_map = "./functions/fetchSeoSignals/deno.json"
+# Uncomment to specify a custom file path to the entrypoint.
+# Supported file extensions are: .ts, .js, .mjs, .jsx, .tsx
+entrypoint = "./functions/fetchSeoSignals/index.ts"
+# Specifies static files to be bundled with the function. Supports glob patterns.
+# For example, if you want to serve static HTML pages in your function:
+# static_files = [ "./functions/fetchSeoSignals/*.html" ]
+
+[functions.fetchMentions]
+enabled = true
+verify_jwt = true
+import_map = "./functions/fetchMentions/deno.json"
+# Uncomment to specify a custom file path to the entrypoint.
+# Supported file extensions are: .ts, .js, .mjs, .jsx, .tsx
+entrypoint = "./functions/fetchMentions/index.ts"
+# Specifies static files to be bundled with the function. Supports glob patterns.
+# For example, if you want to serve static HTML pages in your function:
+# static_files = [ "./functions/fetchMentions/*.html" ]
+
+[functions.fetchPosts]
+enabled = true
+verify_jwt = true
+import_map = "./functions/fetchPosts/deno.json"
+# Uncomment to specify a custom file path to the entrypoint.
+# Supported file extensions are: .ts, .js, .mjs, .jsx, .tsx
+entrypoint = "./functions/fetchPosts/index.ts"
+# Specifies static files to be bundled with the function. Supports glob patterns.
+# For example, if you want to serve static HTML pages in your function:
+# static_files = [ "./functions/fetchPosts/*.html" ]

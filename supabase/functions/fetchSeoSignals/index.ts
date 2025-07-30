@@ -27,8 +27,8 @@ serve(async (req) => {
 
     console.log('Fetching SEO signals from SE Ranking API...')
 
-    // SE Ranking API endpoint (example - adjust based on actual API)
-    const seRankingUrl = 'https://api4.seranking.com/sites/keywords'
+    // SE Ranking API endpoint for keywords data
+    const seRankingUrl = 'https://api4.seranking.com/research/keywords/'
     
     // Fetch data from SE Ranking API
     const response = await fetch(seRankingUrl, {
@@ -44,23 +44,31 @@ serve(async (req) => {
     }
 
     const seRankingData = await response.json()
-    console.log(`Received ${seRankingData.length || 0} SEO signals from SE Ranking`)
+    const keywords = seRankingData.results || seRankingData.data || seRankingData
+    console.log(`Received ${keywords.length || 0} keywords from SE Ranking`)
 
     // Transform SE Ranking data to match our schema
-    const transformedData = seRankingData.map((item: any) => ({
-      keyword: item.keyword || item.query,
-      position: item.position || item.rank,
-      url: item.url || item.landing_page,
-      volume: item.volume || item.search_volume || 0,
+    const transformedData = keywords.map((item: any) => ({
+      keyword_id: item.id || `ser_${Date.now()}_${Math.random()}`,
+      keyword: item.keyword || item.query || '',
+      current_position: parseInt(item.position || item.rank || '0'),
+      previous_position: parseInt(item.previous_position || item.prev_rank || '0'),
+      position_change: parseInt(item.position_change || item.rank_change || '0'),
+      search_volume: parseInt(item.search_volume || item.volume || '0'),
+      keyword_difficulty: parseFloat(item.difficulty || item.kd || '0'),
+      competition: item.competition || item.comp || 'unknown',
       cpc: parseFloat(item.cpc || item.cost_per_click || '0'),
-      competition: parseFloat(item.competition || item.difficulty || '0'),
-      previous_position: item.previous_position || item.prev_rank,
-      position_change: item.position_change || (item.previous_position ? item.position - item.previous_position : 0),
-      search_engine: item.search_engine || 'google',
-      location: item.location || item.region || 'United States',
-      device: item.device || 'desktop',
-      tracked_date: item.tracked_date || new Date().toISOString(),
+      url: item.url || item.landing_page || '',
+      search_engine: item.search_engine || item.engine || 'google',
+      location: item.location || item.region || item.country || '',
+      device: item.device || item.platform || 'desktop',
+      language: item.language || item.lang || 'en',
+      date_checked: item.date || item.checked_at || new Date().toISOString(),
+      serp_features: item.serp_features || [],
+      visibility: parseFloat(item.visibility || item.vis || '0'),
+      traffic_potential: parseInt(item.traffic_potential || item.traffic || '0'),
       project_id: item.project_id || 'default_project',
+      domain: item.domain || item.website || '',
       source_platform: 'se_ranking',
       is_active: true,
       metadata: {
@@ -112,4 +120,4 @@ serve(async (req) => {
       }
     )
   }
-}) 
+})
