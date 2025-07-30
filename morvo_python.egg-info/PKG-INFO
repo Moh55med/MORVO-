@@ -1,0 +1,13 @@
+Metadata-Version: 2.4
+Name: morvo_python
+Version: 0.1.0
+Requires-Dist: fastapi
+Requires-Dist: uvicorn
+Requires-Dist: aiohttp
+Requires-Dist: python-dotenv
+Requires-Dist: pydantic
+Requires-Dist: langgraph
+Requires-Dist: typing-extensions
+Requires-Dist: httpx
+Requires-Dist: supabase
+Dynamic: requires-dist

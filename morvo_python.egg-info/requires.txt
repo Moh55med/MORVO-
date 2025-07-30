@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+aiohttp
+python-dotenv
+pydantic
+langgraph
+typing-extensions
+httpx
+supabase

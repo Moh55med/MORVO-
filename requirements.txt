@@ -1,0 +1,9 @@
+supabase==1.0.3
+httpx==0.23.3
+gotrue==1.2.0
+postgrest==0.10.6
+realtime==1.0.2
+pyjwt==2.8.0
+python-dotenv
+fastapi
+uvicorn
