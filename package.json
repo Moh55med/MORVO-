@@ -1,5 +1,4 @@
-# Add content to package.json
-@'
+@"
 {
   "name": "morvo-scheduler",
   "version": "1.0.0",
@@ -21,4 +20,4 @@
   "author": "Mohamed",
   "license": "MIT"
 }
-'@ | Out-File "package.json" -Encoding UTF8
+"@ | Out-File "package.json" -Encoding UTF8
