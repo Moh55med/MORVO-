@@ -3,11 +3,19 @@
 MORVO Platform - Simple Python Web Server
 Since Railway insists on Python, here's a simple Flask server
 """
-from flask import Flask, jsonify
 import os
-import json
+import sys
 from datetime import datetime
 
+try:
+    from flask import Flask, jsonify
+except ImportError:
+    print("Flask not installed. Installing...")
+    import subprocess
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "flask"])
+    from flask import Flask, jsonify
+
+# Create Flask application
 app = Flask(__name__)
 
 @app.route('/')
