@@ -1,0 +1,16 @@
+# Ignore Python files to force Node.js detection
+*.py
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+requirements.txt
+setup.py
+Pipfile
+Pipfile.lock
+.python-version
