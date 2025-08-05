@@ -7,3 +7,6 @@ pyjwt==2.8.0
 python-dotenv
 fastapi
 uvicorn
+# MORVO Platform - Python Flask server requirements
+Flask==2.3.3
+gunicorn==21.2.0
