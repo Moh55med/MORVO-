@@ -304,8 +304,7 @@ def stop_scheduler():
     logger.info("🛑 MORVO Phase 4 scheduler stopped")
     return jsonify({'message': 'MORVO Phase 4 scheduler stopped'})
 
-# Initialize when app starts
-@app.before_first_request
+# Initialize Phase 4 when module loads
 def initialize_phase_4():
     """Initialize MORVO Phase 4"""
     logger.info("🏁 Initializing MORVO Phase 4 - Scheduler...")
@@ -326,6 +325,10 @@ def initialize_phase_4():
     
     threading.Thread(target=delayed_initial_run, daemon=True).start()
     logger.info("✅ MORVO Phase 4 initialization complete")
+
+# Initialize when the module is imported
+if SUPABASE_URL and SUPABASE_ANON_KEY:
+    threading.Thread(target=initialize_phase_4, daemon=True).start()
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
